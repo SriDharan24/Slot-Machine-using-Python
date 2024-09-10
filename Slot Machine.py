@@ -29,8 +29,14 @@ def generate_symbols(rows,cols,symbol):
         columns.append(column)
     return columns
 
-def print_slotmachine(columns):
-    for row in (len(columns):
+def print_slot_machine(columns):
+    for row in range(len(columns[0])):
+        for i, column in enumerate(columns):
+            if i!=len(columns)-1:
+                print(column[row],end=' | ')
+            else:
+                print(column[row],end='')
+        print()
 def deposit():
     while True:
         amount=input("What would you like to deposit?$ ")
@@ -59,7 +65,7 @@ def get_the_number_lines():
 
 def get_bet():
     while True:
-        amount=input("What would you like to Bet on each line?$ ")
+        amount=input("How much would you like to Bet on each line?$ ")
         if amount.isdigit():
             amount=int(amount)
             if MIN_VALUE<=amount<=MAX_VALUE:
@@ -83,4 +89,6 @@ def main():
             break
 
     print(f"You're betting ${bet} on {line} lines.Total bet is ${total_bet}")
+    slots=generate_symbols(ROWS,COLS,symbol_count)
+    print_slot_machine(slots)
 main()
